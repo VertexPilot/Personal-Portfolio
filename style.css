@@ -1,78 +1,70 @@
 /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
 }
 
-body {
-    background: #0f0f0f;
-    color: white;
-    line-height: 1.6;
-    overflow-x: hidden;
+body{
+    background:#0f0f0f;
+    color:white;
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
-/* --- HEADER --- */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 8%;
-    background: #0f0f0f;
+img{
+    max-width:100%;
+    display:block;
 }
 
-.logo img {
-    height: 50px; /* Adjust based on your logo aspect ratio */
-    width: auto;
-    display: block;
+/* =========================
+HEADER
+========================= */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    flex-wrap:wrap;
 }
 
-nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #bbb;
-    font-size: 15px;
-    transition: 0.3s;
+.logo img{
+    height:50px;
 }
 
-nav a:hover {
-    color: #4287f5;
-   
-}
-.buttons button, .hire-navs a{
-     padding: 12px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.3s;
-    text-decoration: none; /* Added to ensure no underlines on <a> tags */
-    display: inline-block;
-    color: white;
+nav{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
 }
 
-.hire-nav {
-    background: #4287f5;
-    border: none;
-    padding: 10px 25px;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: none; /* Removed underline */
-    display: inline-block;
+nav a{
+    text-decoration:none;
+    color:#bbb;
+    font-size:15px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#4287f5;
 }
 
 .hire{
-    background: #4287f5;
-    border: none;
-    color: white;
-    margin-top: 10px;
-    padding: 10px 25px;
-    border-radius: 8px;
-    font-weight: bold;
+    background:#4287f5;
+    border:none;
+    padding:10px 25px;
+    border-radius:8px;
+    font-weight:bold;
+    color:white;
+    cursor:pointer;
 }
+
+.hire:hover{
+    background:#3572d4;
+}
+
 
 /* --- HERO SECTION --- */
 .hero {
