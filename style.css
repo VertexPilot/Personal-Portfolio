@@ -61,6 +61,18 @@ nav a:hover{
     cursor:pointer;
 }
 
+.hire-nav{
+    background: #4287f5;
+    border: none;
+    padding: 10px 25px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none; /* Removed underline */
+    display: inline-block;
+}
+
 .hire:hover{
     background:#3572d4;
 }
