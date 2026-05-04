@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasindu Lakshan | Portfolio</title>
+    <link rel="icon" type="image/png" href="images/Title.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Smooth scroll ── */
+        html { scroll-behavior: smooth; }
+
+        /* ── Sticky fixed navbar ── */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(15,15,15,0.92);
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        /* Push page content below fixed header */
+        body { padding-top: 90px; }
+
+        /* ── Active nav link ── */
+        nav a.active { color: #4287f5; }
+
+        /* ── Section divider ── */
+        .section-divider { border: none; border-top: 1px solid #222; margin: 0 8%; }
+
+        /* ══════════════════════════════════════
+           HAMBURGER MENU (mobile only)
+        ══════════════════════════════════════ */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #bbb;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ══════════════════════════════════════
+           MOBILE RESPONSIVE
+        ══════════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            /* Header layout on mobile */
+            header {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                position: fixed;
+            }
+
+            .hamburger { display: flex; }
+
+            /* Hide Contact Me button from header on mobile */
+            header > .hire { display: none; }
+
+            /* Nav collapses into dropdown */
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #141414;
+                margin-top: 10px;
+                border-radius: 10px;
+                overflow: hidden;
+                order: 3;
+            }
+            nav.open { display: flex; }
+
+            nav a {
+                margin: 0;
+                padding: 14px 20px;
+                border-bottom: 1px solid #222;
+                font-size: 15px;
+            }
+            nav a:last-child { border-bottom: none; }
+
+            /* Hero section */
+            .hero {
+                flex-direction: column-reverse;
+                padding: 40px 5% 60px;
+                min-height: unset;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-text { max-width: 100%; }
+            .hero-text h1 { font-size: 36px; }
+            .hero-text h2 { font-size: 22px; }
+            .intro { font-size: 18px; }
+            .intro2 { font-size: 14px; margin: 0 auto 30px; }
+            .buttons { justify-content: center; flex-wrap: wrap; }
+
+            /* Profile image shrink */
+            .profile-img-box { width: 220px; height: 260px; }
+            .sq-1 { width: 180px; height: 180px; top: -20px; right: 5%; }
+            .sq-2 { width: 120px; height: 120px; bottom: -15px; left: 5%; }
+
+            /* About */
+            .about-container { padding: 50px 5%; min-height: unset; }
+            .about-content { flex-direction: column; gap: 30px; text-align: center; }
+            .about-text h2 { font-size: 32px; }
+            .about-text h3 { font-size: 17px; }
+            .skills-grid { grid-template-columns: 1fr; }
+
+            /* Education */
+            .education-section { padding: 40px 5%; }
+            .section-title { font-size: 28px; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .results-container { flex-direction: column; }
+            .exam-box { min-width: unset; }
+
+            /* Projects placeholder */
+            #projects { padding: 50px 5%; }
+            #project-detail { padding: 50px 5% !important; }
+
+            /* Contact */
+            .contact-container { padding: 40px 5%; min-height: unset; }
+            .contact-box { flex-direction: column; }
+            .contact-form, .contact-info { padding: 25px 20px; }
+            .social-icons-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .icon-link img { width: 30px; height: 30px; }
+
+            /* Section divider */
+            .section-divider { margin: 0 5%; }
+
+            body { padding-top: 70px; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-text h1 { font-size: 28px; }
+            .profile-img-box { width: 180px; height: 210px; }
+        }
+    </style>
+</head>
+<body >
+
+    <header>
+        <div class="logo">
+            <img src="images/logo1.png" alt="VertexPilot_Logo">
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+
+        <!-- Hamburger toggle (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav id="nav-menu">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About me</a>
+            <a href="index.html#education">Education</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact me</a>
+        </nav>
+
+        <button class="hire" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+    </header>
+
+    <!-- ===== HOME ===== -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <p class="intro">Hi I am</p>
+            <h1>Pasindu Lakshan</h1>
+            <h2>ICT Undergraduate</h2>
+            <p class="intro2">
+                I'm a passionate and motivated learner with a strong interest in technology,
+                machine learning, and software development. I enjoy building creative solutions
+                that combine problem-solving with innovation.
+            </p>
+            <div class="buttons">
+                <button class="hire-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+                <button class="cv-btn">Download CV</button>
+            </div>
+        </div>
+
+        <div class="hero-image-container">
+            <div class="square sq-1"></div>
+            <div class="square sq-2"></div>
+            <div class="profile-img-box">
+                <img src="images/profile1.png" alt="Pasindu Lakshan">
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about-container" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About <span>Me</span></h2>
+                <h3>ICT Undergraduate & Developer</h3>
+                <p>
+                    I am a passionate and motivated learner with a strong interest in technology,
+                    machine learning, and software development. I enjoy building creative solutions
+                    that combine problem-solving with innovation.
+                </p>
+                <p>
+                    Currently pursuing my degree, I focus on bridging the gap between data-driven
+                    insights and user-friendly digital experiences. My goal is to create
+                    software that isn't just functional, but impactful.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-item">Python, Java, C, C++</div>
+                    <div class="skill-item">Object Oriented Programming</div>
+                    <div class="skill-item">3D Modeling</div>
+                    <div class="skill-item">UI/UX</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== EDUCATION ===== -->
+    <section class="education-section" id="education">
+        <h2 class="section-title">Academic <span>Journey</span></h2>
+
+        <div class="edu-grid">
+            <div class="edu-card highlight">
+                <div class="edu-year">Current</div>
+                <h3>BICT (Hons)</h3>
+                <p class="institute">University of Vavuniya, Sri Lanka</p>
+                <p>Bachelor of Information Communication Technology Honours Degree.</p>
+            </div>
+            <div class="edu-card highlight">
+                <div class="edu-year">Completed</div>
+                <h3>Diploma in HRM</h3>
+                <p class="institute">IMBS Green Campus (Gampaha)</p>
+                <p>Diploma in Human Resources Management.</p>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <div class="exam-box">
+                <h3>G.C.E. Advanced Level (2023)</h3>
+                <p class="stream">Technology Stream</p>
+                <ul class="grades">
+                    <li>Engineering Technology <span>C</span></li>
+                    <li>Science For Technology <span>C</span></li>
+                    <li>ICT <span>C</span></li>
+                </ul>
+                <div class="stats-mini">
+                    <span>Z-Score: 0.7554</span>
+                    <span>District Rank: 59</span>
+                </div>
+            </div>
+            <div class="exam-box">
+                <h3>G.C.E. Ordinary Level (2020)</h3>
+                <ul class="grades-ol">
+                    <li>Buddhism <span>A</span></li>
+                    <li>Science <span>B</span></li>
+                    <li>History <span>B</span></li>
+                    <li>Art <span>B</span></li>
+                    <li>Mathematics <span>C</span></li>
+                    <li>English <span>C</span></li>
+                    <li>ICT <span>C</span></li>
+                    <li>Sinhala <span>C</span></li>
+                    <li>Business & Accounting <span>C</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" style="padding:80px 8%;min-height:40vh;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+
+        <h2 class="section-title" style="margin-top:0;">My <span style="color:#4287f5;">Projects</span></h2>
+
+        <div class="pro-grid" id="projects-container">
+            <!-- Projects will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact-container" id="contact">
+        <div class="contact-box">
+            <div class="contact-form">
+                <h2>Send me a <span>Message</span></h2>
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="hire-btn1">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h2>Contact <span>Information</span></h2>
+                <p>I am currently open for internships and freelance projects. Let's connect!</p>
+                <div class="social-icons-grid">
+                    <a href="https://contacts.google.com/person/c4088940676423533843" class="icon-link">
+                        <img src="images/gmail.png" alt="Gmail">
+                    </a>
+                    <a href="https://www.linkedin.com/in/pasindu-lakshan-jayasinghe/" class="icon-link">
+                        <img src="images/linkdln.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com/VertexPilot" class="icon-link">
+                        <img src="images/github.png" alt="GitHub">
+                    </a>
+                    <a href="https://www.facebook.com/lakshan.pasindu.1293" class="icon-link">
+                        <img src="images/FB.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/____pasindu_lakshan____/" class="icon-link">
+                        <img src="images/insta.png" alt="Instagram">
+                    </a>
+                    <a href="https://x.com/Pasindu_L4kshan" class="icon-link">
+                        <img src="images/twitter.png" alt="Twitter">
+                    </a>
+                </div>
+                <div class="location-tag">
+                    <p>📍 Kurunegala, Sri Lanka</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-glass">
+  <div class="footer-container">
+    
+    <p class="footer-text">
+      © 2026 - Pasindu Lakshan - All rights reserved.
+    </p>
+
+    <div class="footer-logo">
+        <img src="images/logo1.png" alt="OGAA Logo">
+    </div>
+
+    <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+      ↑ Back to top
+    </button>
+
+  </div>
+</footer>
+
+    <script>
+        // ══════════════════════════════════════
+        // THEME TOGGLE FUNCTIONALITY
+        // ══════════════════════════════════════
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+        htmlElement.classList.add(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const theme = htmlElement.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+            
+            htmlElement.classList.remove('dark-mode', 'light-mode');
+            htmlElement.classList.add(theme);
+            
+            localStorage.setItem('theme', theme);
+        });
+
+        // Project data
+        const projects = [
+            {
+                id: '3d-modelling',
+                title: '3D Modelling',
+                status: 'Current',
+                tools: 'Blender',
+                description: `3D Modelling is one of my core competencies. Using Blender, I create detailed and intricate 3D models for various purposes including architectural visualization, character design, and product prototypes. My work focuses on high-quality modeling techniques, proper UV mapping, and realistic texturing.`,
+                details: [
+                    'Created architectural visualizations for building designs',
+                    'Developed character models for animation projects',
+                    'Designed product prototypes for visualization',
+                    'Mastered UV mapping and texture application',
+                    'Proficient in hard surface and organic modeling'
+                ],
+                toolsList: ['Blender', 'Modeling', 'Texturing', 'UV Mapping']
+            },
+            {
+                id: '3d-animation',
+                title: '3D Animation',
+                status: 'Current',
+                tools: 'Blender',
+                description: `3D Animation brings my models to life. I specialize in creating smooth, professional animations using Blender's powerful animation tools. From character rigging and animation to complex camera movements and visual effects, I handle all aspects of 3D animation production.`,
+                details: [
+                    'Character rigging and skeletal animation',
+                    'Keyframe animation and motion capture',
+                    'Visual effects and particle systems',
+                    'Camera movements and cinematography',
+                    'Rendering and post-production compositing'
+                ],
+                toolsList: ['Blender', 'Rigging', 'Animation', 'VFX', 'Compositing']
+            },
+            {
+                id: 'game-development',
+                title: 'Game Development',
+                status: 'Current',
+                tools: 'Unity Engine, Unreal Engine',
+                description: `Game Development combines my passion for programming and creativity. I work with both Unity and Unreal Engine to create engaging and interactive gaming experiences. My expertise includes gameplay mechanics, physics integration, and optimized performance.`,
+                details: [
+                    'Developed 2D and 3D games using Unity',
+                    'Implemented game mechanics and physics systems',
+                    'Created interactive UI and user interfaces',
+                    'Optimized game performance and memory usage',
+                    'Integrated audio and visual effects'
+                ],
+                toolsList: ['Unity', 'Unreal Engine', 'C#', 'Physics', 'Gameplay']
+            },
+            {
+                id: 'ui-ux',
+                title: 'UI / UX Designing',
+                status: 'Current',
+                tools: 'Wireframe, Figma',
+                description: `UI/UX Design is essential for creating user-friendly digital experiences. I design intuitive interfaces, create wireframes, and develop interactive prototypes using Figma and other design tools. My focus is on user-centered design that combines aesthetics with functionality.`,
+                details: [
+                    'User research and persona development',
+                    'Wireframing and prototyping with Figma',
+                    'High-fidelity mockups and design systems',
+                    'User testing and iteration',
+                    'Responsive design for all devices'
+                ],
+                toolsList: ['Figma', 'Wireframing', 'Prototyping', 'User Research', 'Design Systems']
+            },
+            {
+                id: 'other',
+                title: 'Other Projects',
+                status: 'Current',
+                tools: 'Academic, IoT, System Development',
+                description: `Beyond my primary specializations, I work on diverse projects including academic research, IoT applications, and system development. These projects showcase my versatility and ability to tackle complex technical challenges across different domains.`,
+                details: [
+                    'IoT system design and implementation',
+                    'Embedded systems programming',
+                    'Database design and management',
+                    'System architecture and planning',
+                    'Academic research and paper writing'
+                ],
+                toolsList: ['IoT', 'Embedded Systems', 'Databases', 'System Design', 'Python']
+            }
+        ];
+
+        // Render projects on page load
+        function renderProjects() {
+            const container = document.getElementById('projects-container');
+            container.innerHTML = '';
+            projects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'pro-card highlight';
+                card.onclick = () => showProjectDetail(project.id);
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div class="edu-year">${project.status}</div>
+                    <h3>${project.title}</h3>
+                    <p class="institute">${project.tools}</p>
+                    <p style="color: #999; font-size: 13px; margin-top: 10px;">Click to view details →</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Show project detail in new page
+        function showProjectDetail(projectId) {
+            // Open the project detail page in the same tab
+            window.location.href = `project-${projectId}.html`;
+        }
+
+        // Render projects when page loads
+        window.addEventListener('load', renderProjects);
+
+        // ── Hamburger toggle ──
+        const hamburger = document.getElementById('hamburger');
+        const navMenu   = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+
+        // Close nav when a link is clicked (mobile)
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navMenu.classList.remove('open');
+            });
+        });
+
+        // ── Active nav highlight on scroll ──
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 120) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

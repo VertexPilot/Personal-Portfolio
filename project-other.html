@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Projects | Pasindu Lakshan</title>
+    <link rel="icon" type="image/png" href="images/Title.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(15,15,15,0.92);
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        body { padding-top: 90px; }
+
+        nav a.active { color: #4287f5; }
+
+        .section-divider { border: none; border-top: 1px solid #222; margin: 0 8%; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #bbb;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                position: fixed;
+            }
+
+            .hamburger { display: flex; }
+            header > .hire { display: none; }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #141414;
+                margin-top: 10px;
+                border-radius: 10px;
+                overflow: hidden;
+                order: 3;
+            }
+            nav.open { display: flex; }
+
+            nav a {
+                margin: 0;
+                padding: 14px 20px;
+                border-bottom: 1px solid #222;
+                font-size: 15px;
+            }
+            nav a:last-child { border-bottom: none; }
+
+            .section-divider { margin: 0 5%; }
+            body { padding-top: 70px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo1.png" alt="OGAA Logo">
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+
+        <!-- Hamburger toggle (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav id="nav-menu">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">About me</a>
+            <a href="index.html#education">Education</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact me</a>
+        </nav>
+
+        <button class="hire" onclick="window.location.href='index.html#contact'">Contact Me</button>
+    </header>
+
+    <!-- ===== PROJECT DETAIL ===== -->
+    <section style="padding:80px 8%;min-height:80vh;display:flex;flex-direction:column;justify-content:flex-start;">
+        <a href="index.html#projects" style="margin-bottom:30px;padding:10px 25px;background:#4287f5;border:none;color:white;border-radius:8px;cursor:pointer;font-size:16px;font-weight:600;width:fit-content;text-decoration:none;display:inline-block;transition:0.3s;">← Back to Projects</a>
+        
+        <div class="project-detail-content">
+            <div class="edu-year">Current</div>
+            <h2>Other Projects</h2>
+            <p class="institute">Academic, IoT, System Development</p>
+            <p style="margin-top: 25px;">Beyond my primary specializations, I work on diverse projects including academic research, IoT applications, and system development. These projects showcase my versatility and ability to tackle complex technical challenges across different domains.</p>
+            
+            <h3 style="color: #fff; margin-top: 30px; margin-bottom: 15px; font-size: 22px;">Key Features</h3>
+            <ul style="color: #aaa; line-height: 2; margin-left: 20px;">
+                <li style="margin-bottom: 8px;">• IoT system design and implementation</li>
+                <li style="margin-bottom: 8px;">• Embedded systems programming</li>
+                <li style="margin-bottom: 8px;">• Database design and management</li>
+                <li style="margin-bottom: 8px;">• System architecture and planning</li>
+                <li style="margin-bottom: 8px;">• Academic research and paper writing</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 30px; margin-bottom: 15px; font-size: 22px;">Technologies & Tools</h3>
+            <div class="project-tools">
+                <div class="tool-item">IoT</div>
+                <div class="tool-item">Embedded Systems</div>
+                <div class="tool-item">Databases</div>
+                <div class="tool-item">System Design</div>
+                <div class="tool-item">Python</div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== GALLERY SECTION ===== -->
+    <section style="padding: 80px 8%; min-height: auto;">
+        <h2 style="text-align: center; font-size: 35px; margin-bottom: 60px; color: #fff;">
+            Project <span style="color: #4287f5;">Gallery</span>
+        </h2>
+
+        <div class="gallery-container">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="images/gallery-1.png" alt="IoT Project">
+                </div>
+                <div class="gallery-description">
+                    <h3>IoT Home Automation</h3>
+                    <p>Smart home IoT system integration featuring sensor networks, real-time monitoring dashboards, and automated control systems for modern living.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="images/gallery-2.png" alt="Database System">
+                </div>
+                <div class="gallery-description">
+                    <h3>Database Management System</h3>
+                    <p>Comprehensive database architecture with optimized queries, data integrity solutions, and efficient data management for enterprise applications.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <img src="images/gallery-3.png" alt="Embedded System">
+                </div>
+                <div class="gallery-description">
+                    <h3>Embedded Systems</h3>
+                    <p>Advanced embedded systems programming with microcontroller integration, firmware development, and hardware-software interface optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Footer -->
+    <footer class="footer-glass">
+        <div class="footer-container">
+            <p class="footer-text">
+                © 2026 - Pasindu Lakshan - All rights reserved.
+            </p>
+            <div class="footer-logo">
+                <img src="images/logo1.png" alt="OGAA Logo">
+            </div>
+            <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                ↑ Back to top
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // ══════════════════════════════════════
+        // THEME TOGGLE FUNCTIONALITY
+        // ══════════════════════════════════════
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+        htmlElement.classList.add(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const theme = htmlElement.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+            
+            htmlElement.classList.remove('dark-mode', 'light-mode');
+            htmlElement.classList.add(theme);
+            
+            localStorage.setItem('theme', theme);
+        });
+
+        // ── Hamburger toggle ──
+        const hamburger = document.getElementById('hamburger');
+        const navMenu   = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+
+        // Close nav when a link is clicked (mobile)
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navMenu.classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+</html>
