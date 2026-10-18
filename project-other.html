@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Projects | Pasindu Lakshan</title>
+    <link rel="icon" type="image/png" href="images/Title.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .section-divider { border: 0; border-top: 1px solid rgba(151,136,244,.18); margin: 20px auto; width: min(calc(100% - 60px), 1200px); }
+        @media (max-width: 768px) { .section-divider { margin: 0 5%; } }
+    </style>
+    <link rel="stylesheet" href="neon.css">
+    <style id="project-page-index-navbar">
+        /* Keep project-page navigation visually aligned with index.html without changing shared CSS files. */
+        body:not(.portfolio-home) .site-header {
+            position: sticky !important;
+            top: 12px !important;
+            left: auto !important;
+            right: auto !important;
+            z-index: 1000;
+            width: min(calc(100% - 36px), 1320px) !important;
+            max-width: 1320px !important;
+            min-height: unset !important;
+            margin: 12px auto 0 !important;
+            padding: 11px 16px 11px 20px !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background: rgba(5, 8, 20, .78) !important;
+            border: 1px solid rgba(150, 141, 255, .2) !important;
+            border-radius: 19px !important;
+            box-shadow: 0 14px 48px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.035);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        body:not(.portfolio-home) .site-header .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 190px;
+            text-decoration: none;
+        }
+        body:not(.portfolio-home) .site-header .brand .logo img {
+            display: block;
+            height: 60px;
+            width: auto;
+            max-width: none;
+            max-height: none;
+            object-fit: contain;
+        }
+        body:not(.portfolio-home) .site-header nav.main-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(15px, 2.3vw, 34px);
+            width: auto;
+            margin: 0;
+            padding: 0;
+            order: 0;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            overflow: visible;
+        }
+        body:not(.portfolio-home) .site-header nav.main-nav a {
+            position: relative;
+            margin: 0 !important;
+            padding: 11px 0;
+            color: #b8bed5;
+            font-size: 12px;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: none;
+            border: 0;
+            background: transparent;
+            transition: color .2s ease;
+        }
+        body:not(.portfolio-home) .site-header nav.main-nav a:hover,
+        body:not(.portfolio-home) .site-header nav.main-nav a.active {
+            color: #fff !important;
+        }
+        body:not(.portfolio-home) .site-header .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        body:not(.portfolio-home) .site-header .theme-toggle {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            color: #d9d8ff;
+            border: 1px solid transparent;
+            background: transparent;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+        body:not(.portfolio-home) .site-header .theme-toggle:hover {
+            border-color: var(--border);
+            color: var(--cyan);
+            background: rgba(168,85,247,.08);
+        }
+        body:not(.portfolio-home) .site-header .header-game-link {
+            display: flex;
+            gap: 11px;
+            align-items: center;
+            padding: 10px 13px;
+            border: 1px solid rgba(168,85,247,.58);
+            color: #f4eaff;
+            border-radius: 12px;
+            background: rgba(168,85,247,.1);
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .09em;
+            white-space: nowrap;
+            transition: .2s ease;
+        }
+        body:not(.portfolio-home) .site-header .header-game-link span:last-child { font-size: 15px; color: var(--cyan); }
+        body:not(.portfolio-home) .site-header .header-game-link:hover { background: rgba(168,85,247,.2); box-shadow: 0 0 24px rgba(168,85,247,.16); }
+        body:not(.portfolio-home) .site-header .hamburger { display: none; }
+
+        @media (max-width: 1050px) {
+            body:not(.portfolio-home) .site-header { gap: 12px; }
+            body:not(.portfolio-home) .site-header .brand { min-width: 165px; }
+            body:not(.portfolio-home) .site-header nav.main-nav { gap: 15px; }
+            body:not(.portfolio-home) .site-header nav.main-nav a { font-size: 10px; }
+            body:not(.portfolio-home) .site-header .header-game-link { padding: 9px 10px; }
+        }
+        @media (max-width: 760px) {
+            body:not(.portfolio-home) .site-header {
+                top: 7px !important;
+                width: calc(100% - 20px) !important;
+                margin: 7px auto 0 !important;
+                padding: 9px 10px !important;
+                gap: 9px !important;
+                border-radius: 15px !important;
+                flex-wrap: nowrap;
+            }
+            body:not(.portfolio-home) .site-header .brand { min-width: 0; gap: 7px; }
+            body:not(.portfolio-home) .site-header .brand .logo img { height: 60px; width: auto; max-width: none; max-height: none; }
+            body:not(.portfolio-home) .site-header .header-actions { gap: 3px; }
+            body:not(.portfolio-home) .site-header .header-game-link { display: none; }
+            body:not(.portfolio-home) .site-header .theme-toggle { width: 34px; height: 34px; margin: 0; order: initial; }
+            body:not(.portfolio-home) .site-header .hamburger {
+                order: 3;
+                display: flex;
+                width: 35px;
+                height: 35px;
+                padding: 7px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                cursor: pointer;
+                border: 1px solid rgba(168,85,247,.22);
+                border-radius: 9px;
+                background: rgba(168,85,247,.06);
+            }
+            body:not(.portfolio-home) .site-header .hamburger span {
+                display: block;
+                width: 17px;
+                height: 2px;
+                border-radius: 3px;
+                background: #e9e5ff;
+                transition: .2s;
+            }
+            body:not(.portfolio-home) .site-header .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            body:not(.portfolio-home) .site-header .hamburger.open span:nth-child(2) { opacity: 0; }
+            body:not(.portfolio-home) .site-header .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+            body:not(.portfolio-home) .site-header nav.main-nav {
+                display: none;
+                position: absolute;
+                top: calc(100% + 8px);
+                left: 0;
+                right: 0;
+                width: 100%;
+                margin: 0;
+                padding: 8px;
+                order: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 2px;
+                background: rgba(6,9,22,.97);
+                border: 1px solid rgba(151,136,244,.3);
+                border-radius: 14px;
+                box-shadow: 0 18px 45px rgba(0,0,0,.35);
+                backdrop-filter: blur(18px);
+            }
+            body:not(.portfolio-home) .site-header nav.main-nav.open { display: flex; }
+            body:not(.portfolio-home) .site-header nav.main-nav a {
+                padding: 12px 13px;
+                border-radius: 8px;
+                font-size: 11px;
+            }
+            body:not(.portfolio-home) .site-header nav.main-nav a:hover,
+            body:not(.portfolio-home) .site-header nav.main-nav a.active { background: rgba(168,85,247,.1); }
+            body:not(.portfolio-home) .site-header nav.main-nav a::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+    <a class="brand" href="index.html#home" aria-label="Pasindu Lakshan home">
+      <div class="logo">
+        <img src="images/logo1.png" alt="VertexPilot Logo">
+      </div>
+    </a>
+
+    <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+
+    <nav class="main-nav" id="nav-menu" aria-label="Main navigation">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#skills">Skills</a>
+      <a class="active" href="index.html#projects" aria-current="page">Projects</a>
+      <a href="index.html#journey">Journey</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" title="Toggle theme">
+        <svg class="moon-icon" viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden="true"><path d="M20.5 15.4A8.4 8.4 0 0 1 8.6 3.5 8.5 8.5 0 1 0 20.5 15.4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="header-game-link" href="index.html#projects" aria-label="Explore projects"><span>LET'S PLAY</span><span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+    <!-- ===== PROJECT DETAIL ===== -->
+    <section style="padding:80px 8%;min-height:80vh;display:flex;flex-direction:column;justify-content:flex-start;">
+
+         <div class="hero-buttons">
+          <a class="button button-primary" href="index.html#projects" ><span aria-hidden="true">↩</span> Back to Projects</a>
+        </div>
+        
+        <div class="project-detail-content">
+            <div class="edu-year">Current</div>
+            <h2>IoT <span class="gradient-text">Projects</span></h2>
+            <p class="institute">Academic, IoT, System Development</p>
+            <p style="margin-top: 25px;">My university work has introduced me to OOP-based system design and IoT projects. I have also worked on a Smart Gas Detector concept and am currently developing a Smart Plant Emotion Communicator prototype with an ESP32 and environmental sensors.</p>
+            
+            <h3 style="color: #fff; margin-top: 30px; margin-bottom: 15px; font-size: 22px;">Key Features</h3>
+            <ul style="color: #aaa; line-height: 2; margin-left: 20px;">
+                <li style="margin-bottom: 8px;">• Explore sensor readings and microcontroller-based prototypes</li>
+                <li style="margin-bottom: 8px;">• Work with ESP32 and connected sensors</li>
+                <li style="margin-bottom: 8px;">• Practise structuring data in academic systems</li>
+                <li style="margin-bottom: 8px;">• Apply OOP concepts in system design projects</li>
+                <li style="margin-bottom: 8px;">• Document project goals, setup and observations</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 30px; margin-bottom: 15px; font-size: 22px;">Technologies & Tools</h3>
+            <div class="project-tools">
+                <div class="tool-item">IoT</div>
+                <div class="tool-item">Embedded Systems</div>
+                <div class="tool-item">Databases</div>
+                <div class="tool-item">System Design</div>
+                <div class="tool-item">Python</div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== GALLERY SECTION ===== -->
+    <section style="padding: 80px 8%; min-height: auto;">
+        <h2 style="text-align: center; font-size: 35px; margin-bottom: 60px; color: #fff;">
+            Project <span style="color: #4287f5;">Gallery</span>
+        </h2>
+
+        <div class="gallery-container">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <div class="gallery-placeholder placeholder-iot-1" role="img" aria-label="SMART PLANT PROJECT preview placeholder"><span>SMART PLANT PROJECT</span><b aria-hidden="true">⌁</b><small>ADD YOUR RENDER OR SCREENSHOT</small></div>
+                </div>
+                <div class="gallery-description">
+                    <h3>Smart Plant Prototype</h3>
+                    <p>Placeholder for a photo of the Smart Plant Emotion Communicator prototype.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <div class="gallery-placeholder placeholder-iot-2" role="img" aria-label="SYSTEM DESIGN preview placeholder"><span>SYSTEM DESIGN</span><b aria-hidden="true">{ }</b><small>ADD YOUR RENDER OR SCREENSHOT</small></div>
+                </div>
+                <div class="gallery-description">
+                    <h3>Academic System Design</h3>
+                    <p>Placeholder for screenshots from an academic OOP or system design project.</p>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item">
+                <div class="gallery-image">
+                    <div class="gallery-placeholder placeholder-iot-3" role="img" aria-label="SENSOR PROTOTYPE preview placeholder"><span>SENSOR PROTOTYPE</span><b aria-hidden="true">◉</b><small>ADD YOUR RENDER OR SCREENSHOT</small></div>
+                </div>
+                <div class="gallery-description">
+                    <h3>Sensor Prototyping</h3>
+                    <p>Placeholder for hardware testing photos or sensor readings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Footer -->
+    <footer class="footer-glass">
+        <div class="footer-container">
+            <p class="footer-text">
+                © 2026 - Pasindu Lakshan - All rights reserved.
+            </p>
+            <div class="footer-logo">
+                <img src="images/logo1.png" alt="OGAA Logo">
+            </div>
+            <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                ↑ Back to top
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // ══════════════════════════════════════
+        // THEME TOGGLE FUNCTIONALITY
+        // ══════════════════════════════════════
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark-mode';
+        htmlElement.classList.add(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const theme = htmlElement.classList.contains('dark-mode') ? 'light-mode' : 'dark-mode';
+            
+            htmlElement.classList.remove('dark-mode', 'light-mode');
+            htmlElement.classList.add(theme);
+            
+            localStorage.setItem('theme', theme);
+        });
+
+        // ── Hamburger toggle ──
+        const hamburger = document.getElementById('hamburger');
+        const navMenu   = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('open');
+            navMenu.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+            hamburger.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+        });
+
+        // Close nav when a link is clicked (mobile)
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navMenu.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open navigation');
+            });
+        });
+
+               (() => {
+            const API_BASE =
+                "https://page-views-api.ratneshc.com/api/v1";
+
+            // All pages use the same website ID.
+            // Uses the live website's hostname automatically.
+            const SITE_ID = window.location.hostname;
+
+            // Shared counter key for the entire portfolio.
+            const COUNTER_PATH = "/";
+
+            const countElement =
+                document.getElementById("portfolioViewCount");
+
+            const params = new URLSearchParams({
+                site: SITE_ID,
+                path: COUNTER_PATH
+            });
+
+            async function updatePortfolioViews() {
+                if (!SITE_ID) {
+                    if (countElement) {
+                        countElement.textContent = "—";
+                    }
+                    return;
+                }
+
+                const trackURL =
+                    `${API_BASE}/track?${params.toString()}`;
+
+                const viewsURL =
+                    `${API_BASE}/views?${params.toString()}`;
+
+                // Record the visit first.
+                try {
+                    await fetch(trackURL, {
+                        method: "GET",
+                        cache: "no-store",
+                        keepalive: true
+                    });
+                } catch (error) {
+                    console.warn("Unable to record portfolio visit.");
+                }
+
+                // Project pages count visits too, but only
+                // the Home page needs to display the counter.
+                if (!countElement) {
+                    return;
+                }
+
+                // Retrieve and display the saved count.
+                try {
+                    const response = await fetch(viewsURL, {
+                        method: "GET",
+                        cache: "no-store"
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Counter API unavailable");
+                    }
+
+                    const data = await response.json();
+                    const views = Number(data.views);
+
+                    if (!Number.isFinite(views) || views < 0) {
+                        throw new Error("Invalid counter response");
+                    }
+
+                    countElement.textContent =
+                        new Intl.NumberFormat().format(views);
+
+                } catch (error) {
+                    countElement.textContent = "—";
+                    console.warn("Unable to load portfolio views.");
+                }
+            }
+
+            updatePortfolioViews();
+        })();
+    </script>
+
+</body>
+</html>

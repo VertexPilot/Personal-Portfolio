@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | Pasindu Lakshan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="neon.css">
+</head>
+<body>
+
+<header>
+    <div class="logo"> 
+        <img src="images/logo.png" alt="OGAA Logo">
+    </div>
+    <nav>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About me</a>
+        <a href="index.html#journey">Education</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact me</a>
+    </nav>
+    <button class="hire-nav" type="button" onclick="window.location.href='index.html#contact'">Get In Touch</button>
+</header>
+
+<section class="contact-container">
+    <div class="contact-box">
+        <div class="contact-form">
+            <h2>Send me a <span>Message</span></h2>
+            <form id="legacy-contact-form">
+                <input id="legacy-sender-name" type="text" name="name" placeholder="Your Name" required>
+                <input id="legacy-sender-email" type="email" name="email" placeholder="Your Email" required>
+                <textarea id="legacy-sender-message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="hire-btn1">Send Message</button>
+            </form>
+        <p id="legacy-form-note" style="color:#9aa4c0;font-size:12px;margin-top:10px;">This form opens your email app; it does not send messages through a server.</p>
+        </div>
+
+        <div class="contact-info">
+            <h2>Contact <span>Information</span></h2>
+            <p>I am currently open for internships and freelance projects. Let's connect!</p>
+            
+            <div class="social-icons-grid">
+                <a href="mailto:lakshanpasindu0908@gmail.com" class="icon-link">
+                    <img src="images/gmail.png" alt="Gmail">
+                </a>
+                <a href="https://www.linkedin.com/in/pasindu-lakshan-jayasinghe/" target="_blank" rel="noopener noreferrer" class="icon-link">
+                    <img src="images/linkdln.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/VertexPilot" class="icon-link">
+                    <img src="images/github.png" alt="GitHub">
+                </a>
+                <a href="https://www.facebook.com/lakshan.pasindu.1293" class="icon-link">
+                    <img src="images/FB.png" alt="Facebook">
+                </a>
+                <a href="https://www.instagram.com/____pasindu_lakshan____/" class="icon-link">
+                    <img src="images/insta.png" alt="Instagram">
+                </a>
+                <a href="https://x.com/Pasindu_L4kshan" class="icon-link">
+                    <img src="images/twitter.png" alt="Twitter">
+                </a>
+            </div>
+            
+            <div class="location-tag">
+                <p>📍 Kurunegala, Sri Lanka</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+        document.getElementById('legacy-contact-form')?.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (!this.reportValidity()) return;
+            const name = document.getElementById('legacy-sender-name').value.trim();
+            const sender = document.getElementById('legacy-sender-email').value.trim();
+            const message = document.getElementById('legacy-sender-message').value.trim();
+            const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+            const body = encodeURIComponent(message + '\n\nFrom: ' + name + '\nReply email: ' + sender);
+            document.getElementById('legacy-form-note').textContent = 'Your email app should open with the message ready to review and send.';
+            window.location.href = 'mailto:lakshanpasindu0908@gmail.com?subject=' + subject + '&body=' + body;
+        });
+        </script>
+</body>
+</html>
