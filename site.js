@@ -66,18 +66,39 @@
     sections.forEach((section) => observer.observe(section));
   }
 
-  // Static-host-friendly contact form: validates fields, then composes an email.
-  // No backend endpoint is assumed. The visitor still presses Send in their mail app.
-  contactForm?.addEventListener('submit', (event) => {
+  // Send the Home page contact form through Web3Forms.
+  contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!contactForm.reportValidity()) return;
-    const name = document.getElementById('sender-name').value.trim();
-    const sender = document.getElementById('sender-email').value.trim();
-    const message = document.getElementById('sender-message').value.trim();
-    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-    const body = encodeURIComponent(`Hi Pasindu,\n\n${message}\n\n---\nFrom: ${name}\nReply email: ${sender}`);
-    if (formNote) formNote.textContent = 'Your email app should open with the message prepared. Review it and press Send to deliver it.';
-    window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    if (!submitButton) return;
+
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    if (formNote) formNote.textContent = 'Sending your message...';
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(contactForm)
+      });
+      const result = await response.json();
+
+      if (!response.ok || result.success !== true) {
+        throw new Error(result.message || 'Message could not be sent.');
+      }
+
+      if (formNote) formNote.textContent = 'Message sent successfully! Thank you for reaching out.';
+      contactForm.reset();
+    } catch (error) {
+      console.error('Contact form error:', error);
+      if (formNote) formNote.textContent = 'Unable to send your message. Please try again later.';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
   });
 
   // Copy email where the Clipboard API is available, with graceful fallback.
