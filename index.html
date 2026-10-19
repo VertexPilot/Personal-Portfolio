@@ -238,12 +238,13 @@
         </div>
         
         <form class="contact-form" id="contact-form">
+          <input type="hidden" name="access_key" value="3a7ec319-418d-4992-bf59-163470f2b099">
           <div class="form-heading"><span class="form-indicator"></span><h3>Send a message</h3></div>
           <label for="sender-name">Your name</label><input id="sender-name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
           <label for="sender-email">Email address</label><input id="sender-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
           <label for="sender-message">Message</label><textarea id="sender-message" name="message" rows="4" placeholder="Tell me what you're thinking..." required></textarea>
-          <button type="submit" class="button button-primary form-submit">Compose email <span aria-hidden="true">↗</span></button>
-          <p class="form-note" id="form-note" aria-live="polite">This opens your default email app with the message ready to send.</p>
+          <button type="submit" class="button button-primary form-submit">Send message <span aria-hidden="true">↗</span></button>
+          <p class="form-note" id="form-note" aria-live="polite">Your message will be sent through the contact form.</p>
         </form>
       </div>
     </section>
