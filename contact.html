@@ -28,12 +28,16 @@
         <div class="contact-form">
             <h2>Send me a <span>Message</span></h2>
             <form id="legacy-contact-form">
+                <input
+                    type="hidden"
+                    name="access_key"
+                    value="3a7ec319-418d-4992-bf59-163470f2b099">
                 <input id="legacy-sender-name" type="text" name="name" placeholder="Your Name" required>
                 <input id="legacy-sender-email" type="email" name="email" placeholder="Your Email" required>
                 <textarea id="legacy-sender-message" name="message" placeholder="Your Message" rows="5" required></textarea>
                 <button type="submit" class="hire-btn1">Send Message</button>
             </form>
-        <p id="legacy-form-note" style="color:#9aa4c0;font-size:12px;margin-top:10px;">This form opens your email app; it does not send messages through a server.</p>
+        <p id="legacy-form-note" style="color:#9aa4c0;font-size:12px;margin-top:10px;">Your message will be sent securely through the contact form.</p>
         </div>
 
         <div class="contact-info">
@@ -69,17 +73,65 @@
 </section>
 
 <script>
-        document.getElementById('legacy-contact-form')?.addEventListener('submit', function(event) {
+    (() => {
+        const form = document.getElementById("legacy-contact-form");
+        const note = document.getElementById("legacy-form-note");
+
+        if (!form) return;
+
+        form.addEventListener("submit", async (event) => {
             event.preventDefault();
-            if (!this.reportValidity()) return;
-            const name = document.getElementById('legacy-sender-name').value.trim();
-            const sender = document.getElementById('legacy-sender-email').value.trim();
-            const message = document.getElementById('legacy-sender-message').value.trim();
-            const subject = encodeURIComponent('Portfolio enquiry from ' + name);
-            const body = encodeURIComponent(message + '\n\nFrom: ' + name + '\nReply email: ' + sender);
-            document.getElementById('legacy-form-note').textContent = 'Your email app should open with the message ready to review and send.';
-            window.location.href = 'mailto:lakshanpasindu0908@gmail.com?subject=' + subject + '&body=' + body;
+
+            if (!form.reportValidity()) return;
+
+            const button = form.querySelector('button[type="submit"]');
+            if (!button) return;
+
+            const originalText = button.textContent;
+
+            button.disabled = true;
+            button.textContent = "Sending...";
+
+            if (note) note.textContent = "Sending your message...";
+
+            try {
+                const response = await fetch(
+                    "https://api.web3forms.com/submit",
+                    {
+                        method: "POST",
+                        body: new FormData(form)
+                    }
+                );
+
+                const result = await response.json();
+
+                if (!response.ok || result.success !== true) {
+                    throw new Error(
+                        result.message || "Message could not be sent."
+                    );
+                }
+
+                if (note) {
+                    note.textContent =
+                        "Message sent successfully! Thank you for reaching out.";
+                }
+
+                form.reset();
+
+            } catch (error) {
+                console.error("Contact form error:", error);
+
+                if (note) {
+                    note.textContent =
+                        "Unable to send your message. Please try again later.";
+                }
+
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
         });
-        </script>
+    })();
+</script>
 </body>
 </html>
