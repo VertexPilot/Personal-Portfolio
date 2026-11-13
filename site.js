@@ -7,7 +7,7 @@
   const contactForm = document.getElementById('contact-form');
   const formNote = document.getElementById('form-note');
   const copyEmailButton = document.getElementById('copy-email');
-  const emailAddress = 'lakshanpasindu0908@gmail.com';
+  const emailAddress = 'pasindulakshan.dev@gmail.com';
 
   // Theme choice persists between visits where localStorage is available.
   let savedTheme = 'dark-mode';
